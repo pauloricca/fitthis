@@ -14,7 +14,8 @@ int transitionTimer = 0;
 void setup() 
 { 
   //fullScreen();
-  size(640, 360);
+  noCursor();
+  size(740, 660);
   
   //noSmooth();
   

@@ -1,5 +1,10 @@
 public class HorizontalSwipes extends Effect
 {
+  public float minX = 0;
+  public float maxX = 500;
+  public float minY = 100;
+  public float maxY = 300;
+  
   public float minWidth = 10;
   public float maxWidth = 200;
   public float vMax = -1.5;
@@ -57,7 +62,7 @@ public class HorizontalSwipes extends Effect
     private void Init()
     {
       w = random(minWidth, maxWidth);
-      px = random(width, 2*width);
+      px = random(maxX, 2*maxX);
       vx = random(vMin, vMax);
       op = random(minOpacity, maxOpacity);
       c = branding.GetRandomColor();
@@ -67,7 +72,7 @@ public class HorizontalSwipes extends Effect
     {
       px += vx;
       
-      if(px + w + slant < 0)
+      if(px + w + slant < minX)
       {
         if(running) Init();
         else return;
@@ -78,10 +83,10 @@ public class HorizontalSwipes extends Effect
       if(coloured) fill(c, op * 255);
       else fill(255, op * 255);
       beginShape();
-      vertex(px, -5);
-      vertex(px + w, -5);
-      vertex(px + w + slant, height + 5);
-      vertex(px + slant, height + 5);
+      vertex(px, minY);
+      vertex(px + w, minY);
+      vertex(px + w + slant, maxY);
+      vertex(px + slant, maxY);
       endShape(CLOSE);
     }
   }
