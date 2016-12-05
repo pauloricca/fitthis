@@ -5,7 +5,7 @@ Effect currentEffect = null;
 Effect previousEffect = null;
 PShape logo;
 boolean debug = false;
-boolean fullscreen = true;
+boolean showDrawRect = true;
 
 int transitionAt = 15000;
 int lastMillis;
@@ -13,9 +13,9 @@ int transitionTimer = 0;
 
 void setup() 
 { 
-  //fullScreen();
+  fullScreen();
   noCursor();
-  size(740, 660);
+  //size(740, 660);
   
   //noSmooth();
   
@@ -29,35 +29,35 @@ void setup()
   
   ((HorizontalSwipes) effects[1]).minWidth = 100;
   ((HorizontalSwipes) effects[1]).maxWidth = 300;
-  ((HorizontalSwipes) effects[1]).vMin = -0.5;
-  ((HorizontalSwipes) effects[1]).vMax = -1;
+  ((HorizontalSwipes) effects[1]).vMin = -1.2;
+  ((HorizontalSwipes) effects[1]).vMax = -0.8;
   ((HorizontalSwipes) effects[1]).nPolys = 9;
   
-  ((HorizontalSwipes) effects[2]).minWidth = 10;
-  ((HorizontalSwipes) effects[2]).maxWidth = 20;
-  ((HorizontalSwipes) effects[2]).vMin = -2;
-  ((HorizontalSwipes) effects[2]).vMax = -3;
-  ((HorizontalSwipes) effects[2]).nPolys = 50;
+  ((HorizontalSwipes) effects[2]).minWidth = 15;
+  ((HorizontalSwipes) effects[2]).maxWidth = 25;
+  ((HorizontalSwipes) effects[2]).vMin = -3;
+  ((HorizontalSwipes) effects[2]).vMax = -2;
+  ((HorizontalSwipes) effects[2]).nPolys = 30;
   ((HorizontalSwipes) effects[2]).coloured = false;
   
   ((HorizontalSwipes) effects[3]).minWidth = 100;
   ((HorizontalSwipes) effects[3]).maxWidth = 300;
-  ((HorizontalSwipes) effects[3]).vMin = -0.5;
-  ((HorizontalSwipes) effects[3]).vMax = -1;
+  ((HorizontalSwipes) effects[3]).vMin = -1.5;
+  ((HorizontalSwipes) effects[3]).vMax = -0.8;
   ((HorizontalSwipes) effects[3]).nPolys = 6;
   ((HorizontalSwipes) effects[3]).coloured = false;
   
   ((HorizontalSwipes) effects[4]).minWidth = 10;
   ((HorizontalSwipes) effects[4]).maxWidth = 20;
-  ((HorizontalSwipes) effects[4]).vMin = -4;
-  ((HorizontalSwipes) effects[4]).vMax = -8;
+  ((HorizontalSwipes) effects[4]).vMin = -8;
+  ((HorizontalSwipes) effects[4]).vMax = -4;
   ((HorizontalSwipes) effects[4]).nPolys = 8;
   ((HorizontalSwipes) effects[4]).coloured = false;
   
   ((HorizontalSwipes) effects[5]).minWidth = 50;
   ((HorizontalSwipes) effects[5]).maxWidth = 200;
-  ((HorizontalSwipes) effects[5]).vMin = -0.5;
-  ((HorizontalSwipes) effects[5]).vMax = -1;
+  ((HorizontalSwipes) effects[5]).vMin = -2;
+  ((HorizontalSwipes) effects[5]).vMax = -4;
   ((HorizontalSwipes) effects[5]).nPolys = 4;
   
   ((HorizontalSwipes) effects[6]).minOpacity = 0.5;
@@ -66,9 +66,6 @@ void setup()
   ((HorizontalSwipes) effects[7]).minOpacity = 0.5;
   ((HorizontalSwipes) effects[7]).maxOpacity = 0.8;
   ((HorizontalSwipes) effects[7]).coloured = false;
-  
-  
-  for(int i = 0; i < effects.length; i++) effects[i].Init(); 
 }
 
 void ChangeEffect()
@@ -76,6 +73,7 @@ void ChangeEffect()
   if(currentEffect != null) currentEffect.Pause();
   previousEffect = currentEffect;
   currentEffect = effects[floor(random(0, effects.length))];
+  currentEffect.Init();
   currentEffect.Resume();
 }
 
@@ -100,7 +98,20 @@ void draw()
     background(255);
     loadLogo();
   }
-  shape(logo, 0, 0);  
+  shape(logo, 0, 0); 
+  
+  if(showDrawRect)
+  {
+    HorizontalSwipes hs = ((HorizontalSwipes) currentEffect);
+    pushStyle();
+    stroke(255, 0, 0);
+    noFill();
+    rect(hs.minX, 
+      hs.minY, 
+      hs.maxX - hs.minX,
+      hs.maxY - hs.minY);
+    popStyle();
+  }
 }
 
 void loadLogo()

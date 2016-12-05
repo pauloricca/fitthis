@@ -1,7 +1,7 @@
 public class HorizontalSwipes extends Effect
 {
-  public float minX = 0;
-  public float maxX = 500;
+  public float minX = 50;
+  public float maxX = 600;
   public float minY = 100;
   public float maxY = 300;
   
