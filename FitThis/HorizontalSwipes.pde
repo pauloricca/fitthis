@@ -17,7 +17,7 @@ public class HorizontalSwipes extends Effect
   
   public boolean running = false;
   
-  Poly[] polys;
+  Poly[] polys = new Poly[0];
   
   public HorizontalSwipes()
   {}

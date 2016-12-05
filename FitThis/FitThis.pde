@@ -2,12 +2,12 @@ Branding branding;
 
 Effect[] effects;
 Effect currentEffect = null;
-Effect previousEffect = null;
+//Effect previousEffect = null;
 PShape logo;
 boolean debug = false;
 boolean showDrawRect = true;
 
-int transitionAt = 15000;
+int transitionAt = 25000;
 int lastMillis;
 int transitionTimer = 0;
 
@@ -71,7 +71,7 @@ void setup()
 void ChangeEffect()
 {
   if(currentEffect != null) currentEffect.Pause();
-  previousEffect = currentEffect;
+  //previousEffect = currentEffect;
   currentEffect = effects[floor(random(0, effects.length))];
   currentEffect.Init();
   currentEffect.Resume();
@@ -90,7 +90,8 @@ void draw()
   background(0);
   for(Effect e : effects)
   {
-    if(e == currentEffect || e == previousEffect) e.Draw();
+    //if(e == currentEffect || e == previousEffect) 
+    e.Draw();
   }
   
   if(debug)
