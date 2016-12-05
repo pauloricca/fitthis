@@ -2,6 +2,7 @@ Branding branding;
 
 Effect[] effects;
 Effect currentEffect = null;
+Effect previousEffect = null;
 PShape logo;
 boolean debug = false;
 boolean fullscreen = true;
@@ -72,6 +73,7 @@ void setup()
 void ChangeEffect()
 {
   if(currentEffect != null) currentEffect.Pause();
+  previousEffect = currentEffect;
   currentEffect = effects[floor(random(0, effects.length))];
   currentEffect.Resume();
 }
@@ -89,7 +91,7 @@ void draw()
   background(0);
   for(Effect e : effects)
   {
-    e.Draw();
+    if(e == currentEffect || e == previousEffect) e.Draw();
   }
   
   if(debug)
