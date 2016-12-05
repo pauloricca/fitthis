@@ -7,15 +7,15 @@ PShape logo;
 boolean debug = false;
 boolean showDrawRect = true;
 
-int transitionAt = 25000;
+int transitionAt = 15000;
 int lastMillis;
 int transitionTimer = 0;
 
 void setup() 
 { 
   fullScreen();
-  noCursor();
   //size(740, 660);
+  noCursor();
   
   //noSmooth();
   
