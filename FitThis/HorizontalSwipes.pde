@@ -1,10 +1,5 @@
 public class HorizontalSwipes extends Effect
-{
-  public float minX = 50;
-  public float maxX = 600;
-  public float minY = 100;
-  public float maxY = 300;
-  
+{  
   public float minWidth = 10;
   public float maxWidth = 200;
   public float vMax = -1.5;
@@ -78,6 +73,7 @@ public class HorizontalSwipes extends Effect
         else return;
       }
       
+      if(px > maxX) return;
       
       noStroke();
       if(coloured) fill(c, op * 255);

@@ -1,3 +1,8 @@
+public float minX = 50;
+public float maxX = 600;
+public float minY = 100;
+public float maxY = 300;
+
 Branding branding;
 
 Effect[] effects;
@@ -18,6 +23,8 @@ void setup()
   noCursor();
   
   //noSmooth();
+  
+  background(0);
   
   lastMillis = millis();
   loadLogo();
@@ -47,11 +54,11 @@ void setup()
   ((HorizontalSwipes) effects[3]).nPolys = 6;
   ((HorizontalSwipes) effects[3]).coloured = false;
   
-  ((HorizontalSwipes) effects[4]).minWidth = 10;
-  ((HorizontalSwipes) effects[4]).maxWidth = 20;
-  ((HorizontalSwipes) effects[4]).vMin = -8;
-  ((HorizontalSwipes) effects[4]).vMax = -4;
-  ((HorizontalSwipes) effects[4]).nPolys = 8;
+  ((HorizontalSwipes) effects[4]).minWidth = 15;
+  ((HorizontalSwipes) effects[4]).maxWidth = 40;
+  ((HorizontalSwipes) effects[4]).vMin = -6;
+  ((HorizontalSwipes) effects[4]).vMax = -3;
+  ((HorizontalSwipes) effects[4]).nPolys = 6;
   ((HorizontalSwipes) effects[4]).coloured = false;
   
   ((HorizontalSwipes) effects[5]).minWidth = 50;
@@ -72,7 +79,12 @@ void ChangeEffect()
 {
   if(currentEffect != null) currentEffect.Pause();
   //previousEffect = currentEffect;
-  currentEffect = effects[floor(random(0, effects.length))];
+  Effect chosenEffect;
+  do
+  {
+    chosenEffect = effects[floor(random(0, effects.length))];
+  } while(chosenEffect == currentEffect);
+  currentEffect = chosenEffect;
   currentEffect.Init();
   currentEffect.Resume();
 }
@@ -87,7 +99,12 @@ void draw()
     transitionTimer = transitionAt;
   }
   
-  background(0);
+  pushStyle();
+  fill(0, 0, 0);
+  noStroke();
+  rect(minX, minY, maxX - minX, maxY - minY);
+  popStyle();
+  
   for(Effect e : effects)
   {
     //if(e == currentEffect || e == previousEffect) 
@@ -103,14 +120,10 @@ void draw()
   
   if(showDrawRect)
   {
-    HorizontalSwipes hs = ((HorizontalSwipes) currentEffect);
     pushStyle();
     stroke(255, 0, 0);
     noFill();
-    rect(hs.minX, 
-      hs.minY, 
-      hs.maxX - hs.minX,
-      hs.maxY - hs.minY);
+    rect(minX, minY, maxX - minX, maxY - minY);
     popStyle();
   }
 }
