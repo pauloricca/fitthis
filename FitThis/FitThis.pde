@@ -40,11 +40,11 @@ void setup()
   ((HorizontalSwipes) effects[1]).vMax = -0.8;
   ((HorizontalSwipes) effects[1]).nPolys = 9;
   
-  ((HorizontalSwipes) effects[2]).minWidth = 15;
-  ((HorizontalSwipes) effects[2]).maxWidth = 25;
+  ((HorizontalSwipes) effects[2]).minWidth = 25;
+  ((HorizontalSwipes) effects[2]).maxWidth = 35;
   ((HorizontalSwipes) effects[2]).vMin = -3;
   ((HorizontalSwipes) effects[2]).vMax = -2;
-  ((HorizontalSwipes) effects[2]).nPolys = 30;
+  ((HorizontalSwipes) effects[2]).nPolys = 15;
   ((HorizontalSwipes) effects[2]).coloured = false;
   
   ((HorizontalSwipes) effects[3]).minWidth = 100;
