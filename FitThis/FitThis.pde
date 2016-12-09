@@ -1,7 +1,7 @@
-public float minX = 50;
-public float maxX = 600;
-public float minY = 100;
-public float maxY = 300;
+public float minX = 0;
+public float maxX = 750;
+public float minY = 250;
+public float maxY = 390;
 
 Branding branding;
 
@@ -10,15 +10,15 @@ Effect currentEffect = null;
 //Effect previousEffect = null;
 PShape logo;
 boolean debug = false;
-boolean showDrawRect = true;
+boolean showDrawRect = false;
 
-int transitionAt = 15000;
+int transitionAt = 30000;
 int lastMillis;
 int transitionTimer = 0;
 
 void setup() 
 { 
-  fullScreen();
+  fullScreen(1);
   //size(740, 660);
   noCursor();
   
@@ -113,9 +113,17 @@ void draw()
   
   if(debug)
   {
-    background(255);
+    //background(255);
+    
+    pushStyle();
+    noStroke();
+    fill(255);
+    rect(minX, minY, maxX - minX, maxY - minY);
+    popStyle();
+    
     loadLogo();
   }
+  
   shape(logo, 0, 0); 
   
   if(showDrawRect)
