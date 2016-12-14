@@ -3,6 +3,8 @@ public float maxX = 750;
 public float minY = 250;
 public float maxY = 390;
 
+public int yShift = -2;
+
 Branding branding;
 
 Effect[] effects;
@@ -18,7 +20,7 @@ int transitionTimer = 0;
 
 void setup() 
 { 
-  fullScreen(1);
+  fullScreen();
   //size(740, 660);
   noCursor();
   
@@ -91,6 +93,8 @@ void ChangeEffect()
 
 void draw()
 {
+  translate(0, yShift);
+  
   transitionTimer -= millis()-lastMillis;
   lastMillis = millis();  
   if(transitionTimer <= 0) 
